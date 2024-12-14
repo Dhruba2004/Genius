@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Geist, Geist_Mono ,Outfit} from "next/font/google";
+import { Outfit} from "next/font/google";
 import "./globals.css";
 
 const outfit = Outfit({subsets:["latin"]})

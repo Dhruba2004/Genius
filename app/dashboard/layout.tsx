@@ -8,7 +8,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div>
+    <div className="bg-slate-100 h-screen">
       <div className="md:w-64 fixed hidden md:block">
         <Sidenav />
       </div>
