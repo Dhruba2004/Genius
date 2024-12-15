@@ -13,18 +13,29 @@ import {
 import { AIOutput } from "@/utils/schema";
 import { db } from "@/utils/db";
 import { TEMPLATE } from "../_components/TemplateListSection";
+import Templates from "@/app/(data)/Templates";
 
+export interface HISTORY{
+  id:Number,
+  formData:string,
+  aiResponse:string,
+  templateSlug:string,
+  createdAt:Date
+  createdBy:string
+}
 const History = () => {
   const [history, setHistory] = React.useState<any[]>([]);
+
+  const fetchDbRecords = async () => {
+    const result = await db.select().from(AIOutput);
+    console.log(result);
+
+    setHistory(result);
+  };
 
   useEffect(() => {
     fetchDbRecords();
   }, []);
-
-  const fetchDbRecords = async () => {
-    const result = await db.select().from(AIOutput);
-    setHistory(result);
-  };
 
   return (
     <div className="bg-white shadow-lg rounded-lg border p-3">

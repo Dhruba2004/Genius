@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, use } from "react";
+import React, { useState, use, useContext } from "react";
 import FormSection from "../_components/FormSection";
 import OutputSection from "../_components/OutputSection";
 import Templates from "@/app/(data)/Templates";
@@ -10,6 +10,7 @@ import { AIOutput } from "@/utils/schema";
 import { useUser } from "@clerk/nextjs";
 import moment from "moment";
 import { toast } from "sonner";
+import { TotalUsageContext } from "@/app/(context)/TotalUsageContext";
 
 interface PROPS {
   params: Promise<{
@@ -18,6 +19,8 @@ interface PROPS {
 }
 
 export default function CreateNewContent(props: PROPS) {
+  
+  const {totalUsage}= useContext(TotalUsageContext)
   const params = use(props.params);
 
   const { user } = useUser();
@@ -40,6 +43,10 @@ export default function CreateNewContent(props: PROPS) {
     console.log(result);
   };
   const GenerateAIContent = async (formData: any) => {
+    if(totalUsage>10000){
+      toast("You have reached your maximum usage limit")
+
+    }
     setLoading(true);
     const selectedPrompt = selectedTemplate?.aiPrompt;
 
