@@ -14,7 +14,7 @@ import { AIOutput } from "@/utils/schema";
 import { db } from "@/utils/db";
 import { TEMPLATE } from "../_components/TemplateListSection";
 
-const History = (item: TEMPLATE) => {
+const History = () => {
   const [history, setHistory] = React.useState<any[]>([]);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const History = (item: TEMPLATE) => {
     <div className="bg-white shadow-lg rounded-lg border p-3">
       <div className="bg-white">
         <h1 className="text-2xl font-bold">History</h1>
-        <h2>Search Your previously ai generated content</h2>
+        <h2>Search Your Previously AI Generated Content</h2>
       </div>
 
       <Table>
