@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import React, { useEffect } from "react";
+import Link from "next/link";
 import {
   Table,
   TableBody,
@@ -57,6 +58,45 @@ const History = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
+  {history.map((record, index) => {
+    const templateDetails = Templates.find((template) => template.slug === record.templateSlug);
+    return (
+      <TableRow key={index}>
+        <TableCell className="flex items-center gap-2">
+            <div className="flex items-center gap-2 cursor-pointer">
+              {templateDetails?.icon && (
+                <Image
+                  src={templateDetails.icon}
+                  alt={templateDetails.name || "Template Icon"}
+                  width={24}
+                  height={24}
+                />
+              )}
+              <span className="font-medium text-lg hover:underline">
+                {templateDetails?.name || "Unknown Template"}
+              </span>
+            </div>
+        </TableCell>
+        <TableCell>
+          {record.aiResponse?.split(" ").slice(0, 50).join(" ")}
+          {record.aiResponse?.split(" ").length > 50 ? "..." : ""}
+        </TableCell>
+        <TableCell>{record.createdAt}</TableCell>
+        <TableCell>{record.aiResponse?.split(" ").length || 0}</TableCell>
+        <TableCell>
+          <Button
+            className="bg-violet-600 hover:bg-violet-700 text-white"
+            onClick={() => navigator.clipboard.writeText(record.aiResponse)}
+          >
+            Copy
+          </Button>
+        </TableCell>
+      </TableRow>
+    );
+  })}
+</TableBody>
+
+        {/* <TableBody>
           {history.map((record, index) => (
             <TableRow key={index}>
               <TableCell className="flex items-center gap-2">
@@ -80,7 +120,7 @@ const History = () => {
               </TableCell>
             </TableRow>
           ))}
-        </TableBody>
+        </TableBody> */}
       </Table>
     </div>
   );

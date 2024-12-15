@@ -11,6 +11,7 @@ import { useUser } from "@clerk/nextjs";
 import moment from "moment";
 import { toast } from "sonner";
 import { TotalUsageContext } from "@/app/(context)/TotalUsageContext";
+import { useRouter } from "next/router";
 
 interface PROPS {
   params: Promise<{
@@ -19,6 +20,7 @@ interface PROPS {
 }
 
 export default function CreateNewContent(props: PROPS) {
+  const router = useRouter()
   
   const {totalUsage}= useContext(TotalUsageContext)
   const params = use(props.params);
@@ -45,6 +47,7 @@ export default function CreateNewContent(props: PROPS) {
   const GenerateAIContent = async (formData: any) => {
     if(totalUsage>10000){
       toast("You have reached your maximum usage limit")
+      router.push("/dashboard/billing")
 
     }
     setLoading(true);
