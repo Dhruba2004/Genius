@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, use } from "react";
 import FormSection from "../_components/FormSection";
 import OutputSection from "../_components/OutputSection";
 import Templates from "@/app/(data)/Templates";
@@ -12,20 +12,21 @@ import moment from "moment";
 import { toast } from "sonner";
 
 interface PROPS {
-  params: {
+  params: Promise<{
     templateSlug: string;
-  };
+  }>;
 }
 
-function CreateNewContent(props: PROPS) {
- 
+export default function CreateNewContent(props: PROPS) {
+  const params = use(props.params);
+
   const { user } = useUser();
   const [aiOutput, setAiOutput] = useState<string>("");
 
   const [loading, setLoading] = useState<boolean>(false);
 
   const selectedTemplate: TEMPLATE | undefined = Templates?.find(
-    (item) => item.slug == props.params["templateSlug"]
+    (item) => item.slug == params["templateSlug"]
   );
 
   const saveInDB = async (formData: any, slug: any, aiOutput: any) => {
@@ -74,5 +75,3 @@ function CreateNewContent(props: PROPS) {
     </div>
   );
 }
-
-export default CreateNewContent;
