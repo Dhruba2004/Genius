@@ -35,7 +35,7 @@ function Sidenav() {
       <div className="flex justify-center items-center">
         <Image src={"/logo.png"} height={50} width={50} alt="logo" />
       </div>
-      <div className="mt-5">
+      <div className="mt-5 border-t">
         {menu.map((item, index) => (
           <Link
             href={item.path}
