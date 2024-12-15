@@ -5,10 +5,11 @@ import React from "react";
 
 function Header() {
   return (
-    <div className="container mx-auto shadow-sm border border-b">
-      <header className="flex items-center justify-between p-3">
-        <div className="flex items-center space-x-4">
-          <Image src={"/logo.png"} height={50} width={50} alt="logo" />
+    <div className="p-3 flex items-center shadow-lg justify-between">
+     
+        <div className="flex items-center gap-2">
+          <Image src={"/logo.png"} height={30} width={30} alt="logo" />
+          <h2 className="text-2xl font-bold cursor-pointer">Genius</h2>
         </div>
         <div>
           <Link href={"/dashboard"}>
@@ -17,7 +18,6 @@ function Header() {
             </Button>
           </Link>
         </div>
-      </header>
     </div>
   );
 }

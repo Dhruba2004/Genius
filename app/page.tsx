@@ -1,4 +1,3 @@
-import RetroGrid from "@/components/ui/retro-grid";
 import Header from "./_components/Header";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
