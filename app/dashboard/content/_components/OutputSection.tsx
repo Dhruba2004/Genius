@@ -28,7 +28,7 @@ function OutputSection({aiOutput}:PROPS) {
     console.log(editorRef.current.getInstance().getMarkdown());
   };
   return (
-    <div className=" bg-white mt-[5rem] shadow-lg rounded-lg border">
+    <div className=" bg-white mb-[15rem] shadow-lg rounded-lg border">
       <div className="flex justify-between items-center p-5">
         <h2 className="font-medium text-lg">Your Result</h2>
         <Button onClick={copy} className="gap-2 bg-violet-600 hover:bg-violet-700">

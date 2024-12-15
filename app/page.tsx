@@ -3,6 +3,11 @@ import Head from "next/head";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
+export const metadata = {
+  icons: {
+    icon: '/logo.png',
+  },
+}
 export default function Home() {
   return (
     <section className="h-screen">

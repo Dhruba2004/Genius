@@ -28,8 +28,8 @@ function FormSection({ selectedTemplate, useFormInput, loading }: PROPS) {
     useFormInput(formData);
   };
   return (
-    <div className="p-5 shadow-md border rounded-md bg-white mt-[5rem]">
-      {/* @ts-ignore */}
+    <div className="p-5 shadow-md border rounded-md bg-white mb-[5rem] h-[670px]">
+      {/* @ts-ignore */} 
       <Image src={selectedTemplate?.icon} width={70} height={70} alt="logo" />
       <h2 className="font-bold text-violet-600 text-2xl mb-2">
         {selectedTemplate?.name}
