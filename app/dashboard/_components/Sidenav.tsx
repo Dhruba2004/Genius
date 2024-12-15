@@ -1,13 +1,12 @@
 "use client";
-import { UserButton, useUser } from "@clerk/nextjs";
 import { FileClock, Home, Settings, WalletCards } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import React from "react";
+import UsageTrack from "./UsageTrack";
 
 function Sidenav() {
-  const { user } = useUser();
   const menu = [
     {
       name: "Home",
@@ -32,14 +31,14 @@ function Sidenav() {
   ];
   const path = usePathname();
   return (
-    <div className="h-screen p-5 shadow-sm border justify-between">
+    <div className="h-screen relative p-5 shadow-sm border justify-between bg-white">
       <div className="flex justify-center items-center">
         <Image src={"/logo.png"} height={50} width={50} alt="logo" />
       </div>
       <div className="mt-5">
         {menu.map((item, index) => (
           <Link
-          href={item.path}
+            href={item.path}
             key={index}
             className={`flex gap-2 mb-2 p-3 hover:text-white hover:bg-violet-600 cursor-pointer rounded-lg items-center ${
               path == item.path && "bg-violet-600 text-white"
@@ -50,11 +49,9 @@ function Sidenav() {
           </Link>
         ))}
       </div>
-      <div className="mt-[22rem] rounded-lg p-3 hover:bg-slate-200 cursor-pointer hover:text-black">
-        <div className="flex gap-3">
-          <UserButton />
-          <div>{user?.firstName}</div>
-        </div>
+
+      <div className="absolute bottom-10 left-0 w-full">
+        <UsageTrack />
       </div>
     </div>
   );

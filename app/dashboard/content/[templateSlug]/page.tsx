@@ -9,6 +9,7 @@ import { db } from "@/utils/db";
 import { AIOutput } from "@/utils/schema";
 import { useUser } from "@clerk/nextjs";
 import moment from "moment";
+import { toast } from "sonner";
 
 interface PROPS {
   params: {
@@ -17,10 +18,12 @@ interface PROPS {
 }
 
 function CreateNewContent(props: PROPS) {
+ 
   const { user } = useUser();
   const [aiOutput, setAiOutput] = useState<string>("");
 
   const [loading, setLoading] = useState<boolean>(false);
+
   const selectedTemplate: TEMPLATE | undefined = Templates?.find(
     (item) => item.slug == props.params["templateSlug"]
   );
@@ -40,18 +43,26 @@ function CreateNewContent(props: PROPS) {
     const selectedPrompt = selectedTemplate?.aiPrompt;
 
     const FinalPrompt = JSON.stringify(formData) + " ," + selectedPrompt;
+    try {
+      const result = await chatSession.sendMessage(FinalPrompt);
+      setAiOutput(result?.response.text());
 
-    const result = await chatSession.sendMessage(FinalPrompt);
+      if (result) {
+        toast("Content Generated Successfully");
+      }
+      await saveInDB(formData, selectedTemplate?.slug, result?.response.text());
 
-    setAiOutput(result?.response.text());
-    await saveInDB(formData, selectedTemplate?.slug, result?.response.text());
-    
-    console.log(result?.response.text());
+      console.log(result?.response.text());
+    } catch (error) {
+      console.log(error);
+      toast("Failed to generate");
+    }
+
     setLoading(false);
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-5 p-5">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-5 p-5 bg-white">
       <FormSection
         selectedTemplate={selectedTemplate}
         useFormInput={(v: any) => GenerateAIContent(v)}
