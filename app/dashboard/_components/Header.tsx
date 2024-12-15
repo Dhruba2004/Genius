@@ -13,6 +13,7 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import UsageTrack from "./UsageTrack";
 
 function Header() {
   const menu = [
@@ -73,8 +74,13 @@ function Header() {
                     </ul>
                   ))}
                 </div>
+               
               </SheetDescription>
             </SheetHeader>
+            <div className="mt-[5rem]">
+            <UsageTrack/>
+            </div>
+            
           </SheetContent>
         </Sheet>
        

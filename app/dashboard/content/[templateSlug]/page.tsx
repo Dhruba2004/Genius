@@ -11,7 +11,7 @@ import { useUser } from "@clerk/nextjs";
 import moment from "moment";
 import { toast } from "sonner";
 import { TotalUsageContext } from "@/app/(context)/TotalUsageContext";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 interface PROPS {
   params: Promise<{
