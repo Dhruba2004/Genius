@@ -1,6 +1,7 @@
 "use client";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { FileClock, Home, Settings, WalletCards } from "lucide-react";
+import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -37,7 +38,8 @@ function Sidenav() {
       </div>
       <div className="mt-5">
         {menu.map((item, index) => (
-          <div
+          <Link
+          href={item.path}
             key={index}
             className={`flex gap-2 mb-2 p-3 hover:text-white hover:bg-violet-600 cursor-pointer rounded-lg items-center ${
               path == item.path && "bg-violet-600 text-white"
@@ -45,7 +47,7 @@ function Sidenav() {
           >
             <item.icon className="h-6 w-6" />
             <h2>{item.name}</h2>
-          </div>
+          </Link>
         ))}
       </div>
       <div className="mt-[22rem] rounded-lg p-3 hover:bg-slate-200 cursor-pointer hover:text-black">

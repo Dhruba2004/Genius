@@ -1,14 +1,24 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "@toast-ui/editor/dist/toastui-editor.css";
 
 import { Editor } from "@toast-ui/react-editor";
 import { Button } from "@/components/ui/button";
 import { Copy } from "lucide-react";
 
-function OutputSection() {
+interface PROPS {
+  aiOutput: any;
+}
+function OutputSection({aiOutput}:PROPS) {
   const editorRef:any = useRef(null)
 
+  useEffect(()=>{
+    const editorInstance = editorRef.current.getInstance()
+    editorInstance.setMarkdown(aiOutput)
+  },[aiOutput])
+
+  
+  
   const copy =()=>{
     navigator.clipboard.writeText(editorRef.current.getInstance().getMarkdown());
   }
