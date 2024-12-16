@@ -8,15 +8,21 @@ import { AIOutput } from "@/utils/schema";
 import { HISTORY } from "../history/page";
 import { eq } from "drizzle-orm";
 import { TotalUsageContext } from "@/app/(context)/TotalUsageContext";
+import { UpdateCreditUsageContext } from "@/app/(context)/UpdateCreditUsageContext";
 
 function UsageTrack() {
   const {totalUsage, setTotalUsage} = useContext<any>(TotalUsageContext);
+  const {updateCreditUsage,setUpdateCreditUsage}= useContext(UpdateCreditUsageContext)
   
   const {user} = useUser();
 
   useEffect(()=>{
     user && GetData()
   },[user])
+
+  useEffect(()=>{
+   user && GetData()
+  },[updateCreditUsage])
   
   const GetData = async()=>{
     // @ts-ignore

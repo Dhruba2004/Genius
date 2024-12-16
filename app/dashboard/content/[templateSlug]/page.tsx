@@ -12,6 +12,7 @@ import moment from "moment";
 import { toast } from "sonner";
 import { TotalUsageContext } from "@/app/(context)/TotalUsageContext";
 import { useRouter } from "next/navigation";
+import { UpdateCreditUsageContext } from "@/app/(context)/UpdateCreditUsageContext";
 
 interface PROPS {
   params: Promise<{
@@ -20,6 +21,8 @@ interface PROPS {
 }
 
 export default function CreateNewContent(props: PROPS) {
+
+  const {updateCreditUsage,setUpdateCreditUsage}= useContext(UpdateCreditUsageContext)
   const router = useRouter()
   
   const {totalUsage}= useContext(TotalUsageContext)
@@ -62,6 +65,8 @@ export default function CreateNewContent(props: PROPS) {
         toast("Content Generated Successfully");
       }
       await saveInDB(formData, selectedTemplate?.slug, result?.response.text());
+      setLoading(false);
+      setUpdateCreditUsage(Date.now())
 
       console.log(result?.response.text());
     } catch (error) {

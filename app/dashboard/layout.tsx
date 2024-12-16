@@ -4,6 +4,7 @@ import { useState } from "react";
 import Header from "./_components/Header";
 import { useRouter } from "next/navigation";
 import { TotalUsageContext } from "../(context)/TotalUsageContext";
+import { UpdateCreditUsageContext } from "../(context)/UpdateCreditUsageContext";
 
 export default function DashboardLayout({
   children,
@@ -11,9 +12,11 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   const [totalUsage, setTotalUsage] = useState<Number>(0);
+  const [updateCreditUsage, setUpdateCreditUsage] = useState<any>(0);
   const router = useRouter();
   return (
     <TotalUsageContext value={{totalUsage,setTotalUsage}}>
+      <UpdateCreditUsageContext value={{updateCreditUsage,setUpdateCreditUsage}}>
      
     <div className="bg-slate-100 h-screen">
       <div className="md:w-64 fixed hidden md:block">
@@ -25,6 +28,7 @@ export default function DashboardLayout({
         {children}
       </div>
     </div>
+    </UpdateCreditUsageContext>
     </TotalUsageContext>
   );
 }
