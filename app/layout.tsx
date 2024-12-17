@@ -25,7 +25,7 @@ export default function RootLayout(
         className={`${outfit.className} antialiased`}
       >
         {children}
-        <Toaster />
+        <Toaster richColors />
       </body>
     </html>
     </ClerkProvider>
