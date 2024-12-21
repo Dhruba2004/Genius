@@ -49,7 +49,7 @@ export default function CreateNewContent(props: PROPS) {
   };
   const GenerateAIContent = async (formData: any) => {
     if(totalUsage>10000){
-      toast("You have reached your maximum usage limit")
+      toast.error("You have reached your maximum usage limit")
       router.push("/dashboard/billing")
 
     }
@@ -62,7 +62,7 @@ export default function CreateNewContent(props: PROPS) {
       setAiOutput(result?.response.text());
 
       if (result) {
-        toast("Content Generated Successfully");
+        toast.success("Content Generated Successfully");
       }
       await saveInDB(formData, selectedTemplate?.slug, result?.response.text());
       setLoading(false);
@@ -71,7 +71,7 @@ export default function CreateNewContent(props: PROPS) {
       console.log(result?.response.text());
     } catch (error) {
       console.log(error);
-      toast("Failed to generate");
+      toast.error("Failed to generate");
     }
 
     setLoading(false);
