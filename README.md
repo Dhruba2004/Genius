@@ -1,1 +1,1 @@
-<h1> AI-powered Content Generator Application made using Next js ,Typesript for advanced type safety , Tailwind , Gemini for Advanced AI functinalities , Clerk for authentication ,Neon PostgreSQL and drizzle orm for database </h1>
+<h1> AI-powered Content Generator Application made using Next js ,Typescript for advanced type safety , Tailwind , Gemini for Advanced AI functinalities , Clerk for authentication ,Neon PostgreSQL and drizzle orm for database </h1>
